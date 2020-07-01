@@ -1,3 +1,5 @@
+# https://mccormickml.com/2020/03/10/question-answering-with-a-fine-tuned-BERT/
+
 import torch
 from transformers import BertForQuestionAnswering
 from transformers import BertTokenizer
@@ -6,18 +8,6 @@ model = BertForQuestionAnswering.from_pretrained(
     'bert-large-uncased-whole-word-masking-finetuned-squad')
 tokenizer = BertTokenizer.from_pretrained(
     'bert-large-uncased-whole-word-masking-finetuned-squad')
-# model = BertForQuestionAnswering.from_pretrained(
-#     'bert-base-uncased')
-# tokenizer = BertTokenizer.from_pretrained(
-#     'bert-base-uncased')
-
-
-# question = "How many parameters does BERT-large have?"
-# answer_text = "BERT-large is really big... it has 24-layers and an embedding size of 1,024, for a total of 340M parameters! Altogether it is 1.34GB, so expect it to take a couple minutes to download to your Colab instance."
-question = "How many people recover from COVID?"
-answer_text = "COVID-19 is the infectious disease caused by the most recently discovered coronavirus. This new virus and disease were unknown before the outbreak began in Wuhan, China, in December 2019. The most common symptoms of COVID-19 are fever, tiredness, and dry cough. Some patients may have aches and pains, nasal congestion, runny nose, sore throat or diarrhea. These symptoms are usually mild and begin gradually. Some people become infected but don’t develop any symptoms and don't feel unwell. Most people (about 80%) recover from the disease without needing special treatment. Around 1 out of every 6 people who gets COVID-19 becomes seriously ill and develops difficulty breathing. Older people, and those with underlying medical problems like high blood pressure, heart problems or diabetes, are more likely to develop serious illness. People with fever, cough and difficulty breathing should seek medical attention."
-# print(f"Words in answer ={len(answer_text.split)}")
-
 
 def answer_question(question, answer_text):
     '''

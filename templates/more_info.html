@@ -5,7 +5,36 @@
 {% endblock %}
 
 {% block main %}
-    Hello world
+    <h2>Project "TL;DR"</h2>
+    <br>
+    <p>
+        <i>"TL;DR" ("Too Long; Didn't read")</i> project is a website which allows a user to paste an arbitrary text and:
+    </p>
+    <ul>
+        <li>
+            get it summarized to a given number of sentences or
+        </li>
+        <li>
+            get answers to the user's questions based on the text provided.
+        </li>
+    </ul>
+    <img src="/static/tldr_demo.gif" alt="TL;DR Demo (gif)">
+    <br>
+    <br>
+    <p>
+        Text is summarized following extractive summarization approach using Natural Language Toolkit (<a href="https://www.nltk.org/">NLTK</a>) and question answering is implemented using a pre-trained machine learning model <a href="https://en.wikipedia.org/wiki/BERT_(language_model)">BERT</a>, fine-tuned on the <a href="https://rajpurkar.github.io/SQuAD-explorer/">SQuAD</a> benchmark.
+    </p>
+    <p>
+        Frontend: HTML/CSS-Bootstrap/JS.
+        <br>
+        Backend: Python/Flask.
+    </p>
+    <p>
+        Source code: <a href="https://github.com/IuriiD/nlp_bert_nltk">https://github.com/IuriiD/nlp_bert_nltk</a>
+    </p>
+    <p>
+        I created this app as my <a href="https://cs50.harvard.edu/x/2020/project/">final project</a> in the <a href="https://cs50.harvard.edu/x/2020/">CS50</a> course and as my first acquiaintance with BERT and NTLK.
+    </p>
 {% endblock %}
 
 {% block footer %}
