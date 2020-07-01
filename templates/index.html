@@ -1,0 +1,111 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Main
+{% endblock %}
+
+{% block main %}
+
+    <script>
+        function get_summary(){
+            const Http = new XMLHttpRequest();
+            const url="/get_summary";
+            const params = {
+                input_text: document.querySelector("#input_text").value,
+                sentences_qty: document.querySelector("#sentences_qty").value,
+            }
+            Http.open("POST", url);
+            Http.setRequestHeader("Content-Type", "application/json");
+            Http.send(JSON.stringify(params));            
+            Http.onload = () => {
+                document.querySelector("#text_summary").innerHTML = Http.responseText;
+            }
+        }
+
+        function get_answer(){
+            const Http = new XMLHttpRequest();
+            const url="/get_answer";
+            const params = {
+                input_text: document.querySelector("#input_text").value,
+                question: document.querySelector("#question").value,
+            }
+            Http.open("POST", url);
+            Http.setRequestHeader("Content-Type", "application/json");
+            Http.send(JSON.stringify(params));            
+            Http.onload = () => {
+                document.querySelector("#answer").innerHTML = Http.responseText;
+            }
+        }        
+    </script>
+
+    <!-- A block for the input text -->
+    <div class="row">
+    <div class="col-lg-12">
+        <div class="card mb-5 mb-lg-0">
+        <div class="card-body">
+            <h5 class="card-title text-uppercase text-center" style="font-size:50px;font-weight:bold;">Too long; didn't read?</h5>
+            <h6 class="card-price text-center" style="font-size:36px;font-weight:bold;">Paste that text below  and get it summarized or retrieve the needed info by asking questions.</span></h6>
+            <hr>
+            <form method="post" id="nlp_form">
+                <div class="form-group">
+                    <textarea name="input_text" id="input_text" maxlength="2000" autofocus></textarea>                
+                </div>
+                <div class="text-muted">
+                * Maximum 2000 characters, English language
+                </div>
+            </form>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <br>
+
+    <!-- Blocks for getting a summary and answers -->
+    <div class="row">
+    <div class="col-lg-6">
+        <div class="card mb-5 mb-lg-0">
+        <div class="card-body">
+            <form>
+                <label for="sentences_qty">Number of sentences in summary:</label>
+                <select name="sentences_qty" id="sentences_qty" form="npl_form">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3" selected>3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="7">7</option>
+                <option value="10">10</option>
+                </select>
+                <br><br>
+                <button class="btn btn-block btn-primary text-uppercase" type="submit" onclick="get_summary();return false;">Summarize</button>
+            </form>
+            <br><br>
+            <span id="text_summary" style="background-color: #FFFF00"></span>
+        </div>
+        </div>        
+    </div>
+
+    <div class="col-lg-6">
+        <div class="card mb-5 mb-lg-0">
+        <div class="card-body">
+            <form>
+                <label for="question">You question:</label>
+                <input type="text" id="question" name="question" size="40">
+                <br><br>
+                <button class="btn btn-block btn-primary text-uppercase" type="submit" onclick="get_answer();return false;">Submit the question</button>
+            </form>
+            <br><br>
+            <span id="answer" style="background-color: #FFFF00"></span>
+        </div>
+        </div>
+    </div>
+    </div>  
+
+{% endblock %}
+
+{% block footer %}
+
+    <a href="/more_info">More info</a>
+
+{% endblock %}
